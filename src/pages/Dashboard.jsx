@@ -55,7 +55,9 @@ const Dashboard = () => {
         <div className="flex gap-9 items-center max-sm:hidden">
           <div className="text-xl underline hover:text-gray-300 cursor-pointer">About</div>
           <div className="text-xl underline hover:text-gray-300 cursor-pointer">Contact Us</div>
-         
+          <Link to="/">
+          <div className="text-xl underline hover:text-gray-300 cursor-pointer">Log out</div>
+          </Link>
         </div>
        
       </div>

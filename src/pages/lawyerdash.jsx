@@ -110,7 +110,7 @@ return (
         </Link>
         <div className="text-xl underline hover:text-gray-300 cursor-pointer">Response</div>
         <div className="ml-auto text-xl underline hover:text-gray-300 cursor-pointer">Send</div>
-        <Link to="">
+        <Link to="/">
           <div className="text-xl underline hover:text-gray-300 cursor-pointer">Log out</div>
           </Link>
       </div>
