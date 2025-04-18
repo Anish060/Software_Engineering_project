@@ -1,12 +1,13 @@
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios'
 
 const Dashboard = () => {
   const location = useLocation();
   const email = location.state?.email;
   const [law, setLaw] = useState([]);
-  const [conte, setConte] = useState({ name: email, lawyer: "", title: "", description: "" });
+  const [conte, setConte] = useState({ name: email, lawyer: "", title: "", description: "" ,Category:""});
 
   // Fetch lawyer details on mount
   useEffect(() => {
@@ -15,8 +16,25 @@ const Dashboard = () => {
       .then((data) => setLaw(data))
       .catch((err) => console.error("Fetch error:", err));
   }, []);
+  async function geans1() {
+    try {
+      const response = await axios({
+        url: "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyAgaxmNhCv8mD4OoUijls12OVMev3t82Kc",
+        method: "post",
+        data: {
+          contents: [{ parts: [{ text: conte.description + " analyse this and categorise the type of case whether its civil or criminal or like that according to indian courts give single word answer" }] }],
+        },
+      });
+      
 
+      return response.data.candidates[0].content.parts[0].text;
+    } catch (error) {
+      console.log(error);
+      return "Unknown";  // Return a fallback category in case of error
+    }
+  }
   const handleSubmit = async (e) => {
+
     e.preventDefault();
     console.log("Submitting:", conte);
     const lo=()=>{
@@ -24,12 +42,12 @@ const Dashboard = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:8081/sen", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(conte),
-      });
-
+      const categor=await geans1();
+      const updatedConte = { ...conte, Category: categor };  // Create a new object with updated category
+      
+      const response = await axios.post("http://localhost:8081/sen", updatedConte);
+      console.log("Response:", response.data);
+      
       if (response.ok) {
         console.log("Data submitted successfully!");
       } else {

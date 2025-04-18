@@ -131,6 +131,7 @@ return (
                 <th className="p-3 border border-black">Status</th>
                 <th className="p-3 border border-black">Next Hearing</th>
                 <th className="p-3 border border-black">Lawyer Status</th>
+                <th className="p-3 border border-black">Case Type</th>
                 <th className="p-3 border border-black">View</th>
               </tr>
             </thead>
@@ -146,6 +147,7 @@ return (
                       {(item.lawyer_approved === "N") ? "Not Approved yet" :
                         (item.lawyer_approved === "R") ? "Rejected" : "Approved"}
                     </td>
+                    <td className="p-3 border border-black">{item.Category || "-"}</td>
                     <td className="p-3 border border-black">
                       <button onClick={() => hview(item)} className="p-2 bg-black text-white rounded-md">View</button>
                     </td>
@@ -169,6 +171,7 @@ return (
         <div className="flex overflow-hidden flex-col items-start self-start px-10 py-8 w-full rounded-lg border border-black border-solid max-w-[502px] shadow-lg bg-white">
           <div className="text-lg font-bold">User Name: {d.user_name}</div>
           <div className="mt-4 text-lg font-semibold">Case Title: {d.case_title}</div>
+          <div className="mt-6">Case Type:{d.Category}</div>
           <div className="mt-6 font-semibold">Case Description:</div>
           <textarea
             className="overflow-hidden px-3.5 pt-3.5 pb-20 mt-3.5 ml-9 max-w-full border border-black shadow w-[301px] resize-none bg-white"
@@ -211,5 +214,4 @@ return (
 
 )
 }
-
 export default lawyerdash

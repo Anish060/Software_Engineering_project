@@ -99,6 +99,7 @@ function case_history() {
             value={d.case_desc || ""}
             readOnly
           />
+           <div className="mt-6">Case Type:{d.Category}</div>
           <button
             className="self-end px-12 pt-1.5 pb-5 mt-6 font-semibold text-white rounded-lg bg-stone-900"
             onClick={hr}

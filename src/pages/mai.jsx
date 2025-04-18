@@ -96,5 +96,4 @@ function mai() {
   
   )
 }
-
 export default mai

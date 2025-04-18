@@ -47,11 +47,11 @@ app.get("/l_info",(req,res)=>{
 })
 
 app.post("/sen", (req, res) => {
-    const { name,lawyer,title, description } = req.body;  // ✅ Extract values correctly
+    const { name,lawyer,title, description,Category } = req.body;  // ✅ Extract values correctly
 
 
-    const sql = "INSERT INTO user_detail (user_name,lawyer,case_title,case_desc,status,next_hearing) VALUES (?, ?,?,?,'P','')";  // ✅ Use (?, ?)
-    db.query(sql, [name,lawyer,title, description ], (err, result) => {   // ✅ Use correct format
+    const sql = "INSERT INTO user_detail (user_name,lawyer,case_title,case_desc,status,next_hearing,Category) VALUES (?, ?,?,?,'P','',?)";  // ✅ Use (?, ?)
+    db.query(sql, [name,lawyer,title, description, Category], (err, result) => {   // ✅ Use correct format
         if (err) {
             console.error("Error inserting data:", err);
             return res.status(500).json({ error: err.message });

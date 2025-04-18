@@ -94,6 +94,7 @@ function judgedash() {
               <th className="p-3 border border-black">Next Hearing</th>
               <th className="p-3 border border-black">Lawyer Name</th>
               <th className="p-3 border border-black">Lawyer Status</th>
+              <th className="p-3 border border-black">Case Type</th>
               <th className="p-3 border border-black">View</th>
             </tr>
           </thead>
@@ -107,6 +108,7 @@ function judgedash() {
                   <td className="p-3 border border-black">{item.next_hearing || "-"}</td>
                   <td className="p-3 border border-black">{item.lawyer || "N/A"}</td>
                   <td className="p-3 border border-black">{(item.lawyer_approved === "N") ? "Not Approved yet" : (item.lawyer_approved === "R") ? "Rejected" : "Approved"}</td>
+                  <td className="p-3 border border-black">{item.Category || "N/A"}</td>
                   <td className="p-3 border border-black">
                     <button onClick={() => hview(item)} className="p-2 bg-black text-white rounded-md">View</button>
                   </td>
@@ -129,7 +131,10 @@ function judgedash() {
           <div className="mt-4 text-lg font-semibold">Case Title: {d.case_title}</div>
           <div className="mt-6 font-semibold">Case Description:</div>
           <textarea className="overflow-hidden px-3.5 pt-3.5 pb-20 mt-3.5 border border-black shadow w-full resize-none bg-white" value={d.case_desc || ""} readOnly />
+          <div className="mt-6">Case Type:{d.Category}</div>
+          <div className="text-lg ">Update hearing date:</div>
           <input type="text" className="px-3.5 py-2 mt-2 border border-black shadow w-full bg-white" placeholder={hearr.hear} onChange={(e) => setHear({ ...hearr, hear: e.target.value })} />
+          <div className="text-lg ">Status update:</div>
           <input type="text" className="px-3.5 py-2 mt-2 border border-black shadow w-full bg-white" placeholder={hearr.stat} onChange={(e) => setHear({ ...hearr, stat: e.target.value })} />
           <div className="flex gap-4 mt-6">
             <button className="px-6 py-3 text-white bg-black rounded-lg" onClick={hr}>Back</button>
