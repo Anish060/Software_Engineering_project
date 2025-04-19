@@ -122,7 +122,7 @@ return (
     {(p === 0) && (
       <>
         <div className="mt-8">
-          <p className="font-bold mb-3">Lawyer Details:</p>
+          <p className="font-bold mb-3">Case details:</p>
           <table className="w-full border-collapse border border-black bg-zinc-50">
             <thead className="bg-gray-200 border-b border-black">
               <tr className="text-base text-black hover:bg-[#ffa200] transition duration-200">
